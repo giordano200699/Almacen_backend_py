@@ -1,8 +1,8 @@
 swagger: "2.0"
 info:
-  description: This is the swagger file that goes with our server code
+  description: "Sistema de Almacén para registrar la ubicación de los materiales bibliograficos de una biblioteca."
   version: "1.0.0"
-  title: Swagger REST Article
+  title: "Sistema Backend para un Almacén"
 consumes:
   - "application/json"
 produces:

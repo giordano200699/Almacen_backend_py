@@ -32,3 +32,92 @@ paths:
                   type: "string"
                 seccion:
                   type: "number"
+
+    post:
+      operationId: "stand.registrarStand"
+      parameters:
+        - name: stand
+          in: body
+          schema:
+            $ref: '#/definitions/Stand'
+      tags:
+        - "Stand"
+      summary: "Registro de Stand"
+      description: "Registrar en el sistema un nuevo Stand."
+      responses:
+        200:
+          description: "Registro completado satisfactoriamente"
+  
+  /stand/{stand_id}:
+    get:
+      tags:
+        - "Stand"
+      operationId: "stand.obtenerStand"
+      summary: Obtener un Stand
+      parameters:
+        - $ref: '#/parameters/stand_id'
+      responses:
+        200:
+          description: Retornar un Stand
+          schema:
+            $ref: '#/definitions/Stand'
+        404:
+          description: El Stand no existe
+    put:
+      operationId: "stand.editarStand"
+      tags:
+        - "Stand"
+      summary: Editar Stand
+      parameters:
+        - $ref: '#/parameters/stand_id'
+        - name: stand
+          in: body
+          schema:
+            $ref: '#/definitions/Stand'
+      responses:
+        200:
+          description: Stand actualizado
+
+    delete:
+      tags:
+        - "Stand"
+      operationId: "stand.eliminarStand"
+      summary: Eliminar un Stand
+      parameters:
+        - $ref: '#/parameters/stand_id'
+      responses:
+        204:
+          description: El Stand fue eliminado
+        404:
+          description: El Stand no fue eliminado
+
+parameters:
+  stand_id:
+    name: stand_id
+    description: Identificador del Stand
+    in: path
+    type: string
+    required: true
+    pattern: "^[a-zA-Z0-9-]+$"
+
+definitions:
+  Stand:
+    type: object
+    required:
+      - standId
+      - nombre
+      - seccion
+    properties:
+      standId:
+        type: number
+        description: Identificador
+        example: 123
+      nombre:
+        type: string
+        description: Nombre del stand
+        example: "A"
+      seccion:
+        type: number
+        description: Seccion del stand
+        example: 1
+
